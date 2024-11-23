@@ -1,0 +1,1 @@
+var deleteItem=document.getElementsByClassName("delete-item");deleteItem.forEach(function(d){d.addEventListener("click",function(e){var t=d.getAttribute("data-id");document.getElementById(t).remove()})});

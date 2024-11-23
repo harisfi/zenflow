@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- Mirrored from preview.pichforest.com/probic/layouts/team-employee.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Nov 2024 09:23:10 GMT -->
+<head>
+
+    <meta charset="utf-8" />
+    <title>Employee | Probic - Responsive Bootstrap 5 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <link href="assets/libs/choices.js/public/assets/styles/choices.min.css" rel="stylesheet" type="text/css" />
+    <!-- dragula css -->
+    <link href="assets/libs/dragula/dragula.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+</head>
+
+
+<body data-sidebar="dark" data-topbar="dark">
+
+<!-- <body data-layout="horizontal" data-topbar="colored"> -->
+
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <header id="page-topbar">
+        <div class="navbar-header">
+            <div class="d-flex">
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
+                    <a href="index.html" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="assets/images/logo-light-sm.png" alt="" height="24">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="assets/images/logo-dark.png" alt="" height="24">
+                        </span>
+                    </a>
+
+                    <a href="index.html" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="assets/images/logo-light-sm.png" alt="" height="24">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="assets/images/logo-light.png" alt="" height="24">
+                        </span>
+                    </a>
+                </div>
+
+                <button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="d-flex">
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn header-item user text-start d-flex align-items-center"
+                        id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-10.jpg"
+                            alt="Header Avatar">
+                        <span class="ms-2 d-none d-sm-block user-item-desc">
+                            <span class="user-name">Jansh Wells</span>
+                            <span class="user-sub-title">Administrator</span>
+                        </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end pt-0">
+                        <div class="p-3 bg-primary border-bottom">
+                            <h6 class="mb-0 text-white">Jansh Wells</h6>
+                            <p class="mb-0 font-size-11 text-white-50 fw-semibold">Janshwells@probic.com</p>
+                        </div>
+                        <a class="dropdown-item" href="user-profile.html"><i
+                                class="mdi mdi-account-circle text-muted font-size-16 align-middle me-1"></i> <span
+                                class="align-middle">Profile</span></a>
+                        <a class="dropdown-item" href="auth-signout.html"><i
+                                class="mdi mdi-logout text-muted font-size-16 align-middle me-1"></i> <span
+                                class="align-middle">Logout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="vertical-menu">
+
+        <!-- LOGO -->
+        <div class="navbar-brand-box">
+            <a href="index.html" class="logo logo-dark">
+                <span class="logo-sm">
+                    <img src="assets/images/logo-sm.png" alt="" height="24">
+                </span>
+                <span class="logo-lg">
+                    <img src="assets/images/logo-dark.png" alt="" height="24">
+                </span>
+            </a>
+
+            <a href="index.html" class="logo logo-light">
+                <span class="logo-sm">
+                    <img src="assets/images/logo-light-sm.png" alt="" height="24">
+                </span>
+                <span class="logo-lg">
+                    <img src="assets/images/logo-light.png" alt="" height="24">
+                </span>
+                <span class="logo-lg-brand">
+                    <img src="assets/images/logo-brand-light.png" alt="" height="24">
+                </span>
+            </a>
+        </div>
+
+        <button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+            <i class="fa fa-fw fa-bars"></i>
+        </button>
+
+        <div data-simplebar class="sidebar-menu-scroll">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="metismenu list-unstyled" id="side-menu">
+
+                    <li>
+                        <a href="team-projects.html">
+                            <i class="icon nav-icon" data-feather="briefcase"></i>
+                            <span class="menu-item" data-key="t-projects">Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="team-employee.html">
+                            <i class="icon nav-icon" data-feather="users"></i>
+                            <span class="menu-item" data-key="t-team-overview">Users</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+
+    
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0">Users</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <div>
+                            <div class="d-flex flex-column flex-sm-row justify-content-between">
+                                <div class="search-box">
+                                    <div class="position-relative">
+                                        <input type="text" id="search-employee"
+                                            class="form-control bg-whitetext-secondary rounded"
+                                            onkeyup="searchEmployee()" placeholder="Search...">
+                                        <i class="uil uil-search search-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3 mt-md-0">
+                                    <a href="#" class="btn btn-soft-primary" data-bs-toggle="modal"
+                                        data-bs-target=".bs-example-edit-employee" onclick="addEmployee()"><i
+                                            class="mdi mdi-plus me-1"></i>New User</a>
+                                </div>
+                            </div><!-- end -->
+                            <div class="row mt-4" id="employee-items">
+                                <div class="col-xl-3 col-md-6 employee-item" id="employee-items-1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="text-end">
+                                                <div class="dropdown">
+                                                    <a href="#" class="dropdown-toggle font-size-16 text-muted"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="mdi mdi-dots-horizontal"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item text-primary"
+                                                            href="javascript: void(0);" data-bs-toggle="modal"
+                                                            data-bs-target=".bs-example-edit-employee"
+                                                            onclick="editProjects('employee-items-1')">
+                                                            <i
+                                                                class="mdi mdi-file-document-edit-outline me-2"></i>Edit</a>
+                                                        <a class="dropdown-item text-danger delete-item"
+                                                            onclick="deleteEmployee('employee-items-1')"
+                                                            data-id="employee-items-1" href="javascript: void(0);"><i
+                                                                class="mdi mdi-trash-can-outline me-2"></i>Remove</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <img src="assets/images/users/avatar-10.jpg"
+                                                    class="avatar-lg img-fluid rounded-circle employee-image"
+                                                    data-type="image" alt="user-image">
+                                                <h6 class="font-size-15 mt-3 mb-1"><a href="user-profile.html"
+                                                        class="text-primary employee-name">Jansh Wells</a></h6>
+                                                <p class="text-muted mb-0 font-size-12 fw-medium employee-designation">
+                                                    Web Designer</p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap gap-2 mt-3 justify-content-center">
+                                                <div>
+                                                    <p class="text-muted fw-medium mb-0">Tag :</p>
+                                                </div>
+                                                <div class="employee-tags d-flex flex-wrap gap-1">
+                                                    <span class="badge badge-soft-secondary p-2">Html</span>
+                                                    <span class="badge badge-soft-secondary p-2">Css</span>
+                                                    <span class="badge badge-soft-secondary p-2">Bootstrap</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- end card body -->
+                                        <div class="card-footer p-0">
+                                            <div class="row g-0">
+                                                <div class="col-6">
+                                                    <div class="text-center border-end p-3">
+                                                        <h6 class="font-size-14 mb-0">
+                                                            <a href="javascript: void(0);"
+                                                                class="text-muted employee-email"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-original-title="janshwellsprobic.com">
+                                                                <i
+                                                                    class="mdi mdi-email-outline align-middle me-2"></i>E-mail
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                </div><!-- end col -->
+                                                <div class="col-6">
+                                                    <div class="text-center p-3">
+                                                        <h6 class="font-size-14 text-muted mb-0">
+                                                            <a href="javascript: void(0);"
+                                                                class="text-muted employee-phoneno"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-original-title="050 519 9488">
+                                                                <i
+                                                                    class="mdi mdi-phone-outline align-middle me-2"></i>Phone
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                </div><!-- end col -->
+                                            </div><!-- end row -->
+                                        </div><!-- end card-footer -->
+                                    </div><!-- end card -->
+                                </div><!-- end col -->
+
+                                <div class="col-xl-3 col-md-6 employee-item" id="employee-items-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="text-end">
+                                                <div class="dropdown">
+                                                    <a href="#" class="dropdown-toggle font-size-16 text-muted"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="mdi mdi-dots-horizontal"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item text-primary"
+                                                            href="javascript: void(0);" data-bs-toggle="modal"
+                                                            data-bs-target=".bs-example-edit-employee"
+                                                            onclick="editProjects('employee-items-2')">
+                                                            <i
+                                                                class="mdi mdi-file-document-edit-outline me-2"></i>Edit</a>
+                                                        <a class="dropdown-item text-danger delete-item"
+                                                            onclick="deleteEmployee('employee-items-2')"
+                                                            data-id="employee-items-2" href="javascript: void(0);"><i
+                                                                class="mdi mdi-trash-can-outline me-2"></i>Remove</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <img src="assets/images/users/avatar-2.jpg"
+                                                    class="avatar-lg img-fluid rounded-circle employee-image"
+                                                    data-type="image" alt="user-image">
+                                                <h6 class="font-size-15 mt-3 mb-1"><a href="user-profile.html"
+                                                        class="text-primary employee-name">Denny Silva</a></h6>
+                                                <p class="text-muted mb-0 font-size-12 fw-medium employee-designation">
+                                                    Web Developer</p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap gap-2 mt-3 justify-content-center">
+                                                <div>
+                                                    <p class="text-muted fw-medium mb-0">Tag :</p>
+                                                </div>
+                                                <div class="employee-tags d-flex flex-wrap gap-1">
+                                                    <span class="badge badge-soft-secondary p-2">Laravel</span>
+                                                    <span class="badge badge-soft-secondary p-2">Django</span>
+                                                    <span class="badge badge-soft-secondary p-2">Python</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- end card body -->
+                                        <div class="card-footer p-0">
+                                            <div class="row g-0">
+                                                <div class="col-6">
+                                                    <div class="text-center border-end p-3">
+                                                        <h6 class="font-size-14 mb-0">
+                                                            <a href="javascript: void(0);"
+                                                                class="text-muted employee-email"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-original-title="dennysilva@probic.com">
+                                                                <i
+                                                                    class="mdi mdi-email-outline align-middle me-2"></i>E-mail
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                </div><!-- end col -->
+                                                <div class="col-6">
+                                                    <div class="text-center p-3">
+                                                        <h6 class="font-size-14 text-muted mb-0">
+                                                            <a href="javascript: void(0);"
+                                                                class="text-muted employee-phoneno"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-original-title="044 062 2075">
+                                                                <i
+                                                                    class="mdi mdi-phone-outline align-middle me-2"></i>Phone
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                </div><!-- end col -->
+                                            </div><!-- end row -->
+                                        </div><!-- end card-footer -->
+                                    </div><!-- end card -->
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div> <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <!-- Edit Employee Modal -->
+        <div class="modal fade bs-example-edit-employee" tabindex="-1" role="dialog" aria-labelledby="addProjectModal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0">
+                    <div class="modal-header bg-soft-primary">
+                        <h5 class="modal-title font-size-16 text-primary add-task-title" id="addProjectModal">Add User
+                        </h5>
+                        <h5 class="modal-title font-size-16 text-primary update-task-title" id="updateProjectModal"
+                            style="display: none;">Update User</h5>
+                        <button type="button" class="btn-close" id="update-emplyoee" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="NewtaskForm">
+                            <div class="text-center">
+                                <div class="mb-3 profile-user">
+                                    <div class="employee-image" id="employee-image-form" data-type="text">
+                                        <div class="avatar-lg mx-auto img-thumbnail rounded-circle">
+                                            <span class="avatar-title rounded-circle fs-4 bg-soft-primary text-primary">
+                                                <i data-feather="user"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="avatar-sm p-0 rounded-circle profile-photo-edit">
+                                        <input id="profile-img-file-input" type="file" class="profile-img-file-input">
+                                        <label for="profile-img-file-input" class="profile-photo-edit avatar-sm">
+                                            <span class="avatar-title rounded-circle bg-light text-body">
+                                                <i class="mdi mdi-camera"></i>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="employeeName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="employeeName" placeholder="Enter Your Name">
+                            </div><!-- end -->
+                            <div class="mb-3">
+                                <label for="employeePosition" class="form-label">Position</label>
+                                <input type="text" class="form-control" id="employeePosition" placeholder="Enter Work Position">
+                            </div><!-- end-->
+                            <div class="mb-3 mt-xl-0">
+                                <div>
+                                    <label for="choices-multiple-remove-button" class="form-label">Tag</label>
+                                    <select class="form-control" name="choices-multiple-remove-button"
+                                        id="choices-multiple-remove-button" multiple>
+                                        <option value="">Choose...</option>
+                                        <option value="Html">Html</option>
+                                        <option value="Css">Css</option>
+                                        <option value="Bootstrap">Bootstrap</option>
+                                        <option value="Laravel">Laravel</option>
+                                        <option value="Django">Django</option>
+                                        <option value="Python">Python</option>
+                                        <option value="Adobe XD">Adobe XD</option>
+                                        <option value="React">React</option>
+                                        <option value="Reactnative">Reactnative</option>
+                                        <option value="Photoshop">Photoshop</option>
+                                        <option value="IOS">IOS</option>
+                                        <option value="Android">Android</option>
+                                    </select>
+                                </div>
+                            </div><!-- end-->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3 mb-sm-0">
+                                        <label for="exampleEmailId" class="form-label">E-mail</label>
+                                        <input type="email" class="form-control" id="exampleEmailId" placeholder="Enter Your Email">
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-sm-6">
+                                    <div>
+                                        <label for="PhoneNo" class="form-label">Phone</label>
+                                        <input type="text" class="form-control" id="PhoneNo" placeholder="Enter Your Number">
+                                    </div>
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-soft-primary" id="addtask">Add</button>
+                        <button type="button" class="btn btn-soft-primary" id="updatetaskdetail">Update</button>
+                    </div><!-- /.modal-footer -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div data-simplebar class="h-100">
+        <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+            <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
+
+            <a href="javascript:void(0);" class="right-bar-toggle ms-auto" id="right-bar-toggle">
+                <i class="mdi mdi-close noti-icon"></i>
+            </a>
+        </div>
+
+        <!-- Settings -->
+        <hr class="m-0" />
+
+        <div class="p-4">
+            
+            <h6 class="mt-4 mb-3">Layout Mode</h6>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-mode"
+                    id="layout-mode-light" value="light">
+                <label class="form-check-label" for="layout-mode-light">Light</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-mode"
+                    id="layout-mode-dark" value="dark">
+                <label class="form-check-label" for="layout-mode-dark">Dark</label>
+            </div>
+
+            <h6 class="mt-4 mb-3">Layout Width</h6>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-width"
+                    id="layout-width-fluid" value="fluid" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                <label class="form-check-label" for="layout-width-fluid">Fluid</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-width"
+                    id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
+                <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+            </div>
+
+            <h6 class="mt-4 mb-3">Layout Position</h6>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-position"
+                    id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-position"
+                    id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+            </div>
+
+            <h6 class="mt-4 mb-3">Topbar Color</h6>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="topbar-color"
+                    id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                <label class="form-check-label" for="topbar-color-light">Light</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="topbar-color"
+                    id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                <label class="form-check-label" for="topbar-color-dark">Dark</label>
+            </div>
+
+            <div id="sidebar-setting">
+            <h6 class="mt-4 mb-3 sidebar-setting">Sidebar Size</h6>
+
+            <div class="form-check sidebar-setting">
+                <input class="form-check-input" type="radio" name="sidebar-size"
+                    id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                <label class="form-check-label" for="sidebar-size-default">Default</label>
+            </div>
+            <div class="form-check sidebar-setting">
+                <input class="form-check-input" type="radio" name="sidebar-size"
+                    id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+            </div>
+            <div class="form-check sidebar-setting">
+                <input class="form-check-input" type="radio" name="sidebar-size"
+                    id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+            </div>
+
+            <h6 class="mt-4 mb-3 sidebar-setting">Sidebar Color</h6>
+
+            <div class="form-check sidebar-setting">
+                <input class="form-check-input" type="radio" name="sidebar-color"
+                    id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                <label class="form-check-label" for="sidebar-color-light">Light</label>
+            </div>
+            <div class="form-check sidebar-setting">
+                <input class="form-check-input" type="radio" name="sidebar-color"
+                    id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+            </div>
+            <div class="form-check sidebar-setting">
+                <input class="form-check-input" type="radio" name="sidebar-color"
+                    id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+            </div>
+        </div>
+
+            <h6 class="mt-4 mb-3">Direction</h6>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-direction"
+                    id="layout-direction-ltr" value="ltr">
+                <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="layout-direction"
+                    id="layout-direction-rtl" value="rtl">
+                <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+            </div>
+
+        </div>
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<!-- JAVASCRIPT -->
+
+
+<!-- Bootstrap JS -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Metismenu Js -->
+<script src="assets/libs/metismenujs/metismenujs.min.js"></script>
+
+<!-- Simplebar Js -->
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+<!-- Feather Js -->
+<script src="assets/libs/feather-icons/feather.min.js"></script>
+
+
+<!-- choice plugins -->
+<script src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+
+<script src="assets/js/pages/choices.init.js"></script>
+
+<!-- profile js -->
+<script src="assets/js/pages/employee.init.js"></script>
+
+<!-- custom js -->
+<script src="assets/js/app.js"></script>
+
+</body>
+
+
+<!-- Mirrored from preview.pichforest.com/probic/layouts/team-employee.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Nov 2024 09:23:10 GMT -->
+</html>
