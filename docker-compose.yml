@@ -1,0 +1,41 @@
+services:
+    mariadb:
+        image: 'mariadb:11'
+        ports:
+            - '${DB_PORT}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - 'zenflow-mariadb:/var/lib/mysql'
+        networks:
+            - zenflow
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            retries: 3
+            timeout: 5s
+
+    phpmyadmin:
+        image: phpmyadmin:latest
+        ports:
+            - '8081:80'  # Access phpMyAdmin on http://localhost:8081
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        depends_on:
+            - mariadb
+        networks:
+            - zenflow
+
+networks:
+    zenflow:
+        driver: bridge
+
+volumes:
+    zenflow-mariadb:
+        driver: local
