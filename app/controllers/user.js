@@ -1,7 +1,7 @@
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const Validator = require("../validators");
 const CreateUserValidator = require("../validators/createUser");
-const bcrypt = require("bcrypt");
 const UpdateUserValidator = require("../validators/updateUser");
 
 class UserController {

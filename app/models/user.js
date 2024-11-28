@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 
 class User {
   constructor(sequelize) {
-    const user = sequelize.define("User", {
+    const model = sequelize.define("User", {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       phone: DataTypes.STRING,
@@ -13,9 +13,7 @@ class User {
       password: DataTypes.STRING,
     });
 
-    this.sync(sequelize);
-
-    return user;
+    return model;
   }
 
   async sync(sequelize) {
