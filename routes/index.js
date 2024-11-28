@@ -1,6 +1,7 @@
 var express = require("express");
 const UserController = require("../app/controllers/user");
 const ProjectController = require("../app/controllers/project");
+const TaskController = require("../app/controllers/task");
 
 class Routes {
   constructor(sequelize) {
@@ -8,6 +9,7 @@ class Routes {
 
     const userController = new UserController(sequelize);
     const projectController = new ProjectController(sequelize);
+    const taskController = new TaskController(sequelize);
 
     router.get("/", function (req, res, next) {
       res.send("Hello world!");
@@ -34,6 +36,17 @@ class Routes {
       .get(projectController.details.bind(projectController))
       .put(projectController.update.bind(projectController))
       .delete(projectController.delete.bind(projectController));
+
+    router
+      .route("/tasks")
+      .get(taskController.index.bind(taskController))
+      .post(taskController.store.bind(taskController));
+
+    router
+      .route("/tasks/:taskId")
+      .get(taskController.details.bind(taskController))
+      .put(taskController.update.bind(taskController))
+      .delete(taskController.delete.bind(taskController));
 
     return router;
   }

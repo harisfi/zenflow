@@ -5,7 +5,7 @@ class CreateProjectValidator {
     const schema = object({
       name: string().required(),
       details: string().required(),
-      status: string().required(),
+      status: string().oneOf(["PENDING", "PROGRESS", "COMPLETED"]).required(),
       user_ids: array(number()),
     });
     return schema.validateSync(input);

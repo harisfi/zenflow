@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const Project = require("../models/project");
 const Validator = require("../validators");
 const CreateProjectValidator = require("../validators/createProject");

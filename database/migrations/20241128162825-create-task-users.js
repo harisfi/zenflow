@@ -2,12 +2,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("ProjectUsers", {
-      ProjectId: {
+    await queryInterface.createTable("TaskUsers", {
+      TaskId: {
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: "Projects",
+          model: "Tasks",
           key: "id",
         },
         onUpdate: "CASCADE",
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("ProjectUsers");
+    await queryInterface.dropTable("TaskUsers");
   },
 };

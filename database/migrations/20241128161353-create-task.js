@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("Tasks", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,22 +13,34 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      email: {
+      description: {
+        type: Sequelize.TEXT,
+      },
+      due_date: {
+        type: Sequelize.DATE,
+      },
+      category: {
+        type: Sequelize.STRING,
+      },
+      progress: {
+        type: Sequelize.INTEGER,
+      },
+      sub_tasks: {
+        type: Sequelize.JSON,
+      },
+      stage: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("BACKLOG", "WAITING", "DOING", "REVIEW", "DONE"),
       },
-      phone: {
-        type: Sequelize.STRING,
-      },
-      position: {
-        type: Sequelize.STRING,
-      },
-      tags: {
-        type: Sequelize.STRING,
-      },
-      password: {
+      ProjectId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Projects",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("Tasks");
   },
 };
