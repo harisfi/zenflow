@@ -4,12 +4,16 @@ const ProjectController = require("../app/controllers/project");
 const TaskController = require("../app/controllers/task");
 
 class Routes {
-  constructor(sequelize) {
+  constructor(userModel, projectModel, taskModel) {
     const router = express.Router();
 
-    const userController = new UserController(sequelize);
-    const projectController = new ProjectController(sequelize);
-    const taskController = new TaskController(sequelize);
+    const userController = new UserController(userModel);
+    const projectController = new ProjectController(projectModel, userModel);
+    const taskController = new TaskController(
+      taskModel,
+      projectModel,
+      userModel
+    );
 
     router.get("/", function (req, res, next) {
       res.send("Hello world!");

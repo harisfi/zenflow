@@ -6,6 +6,7 @@ const logger = require("morgan");
 
 const Database = require("./database");
 const Routes = require("./routes");
+const Model = require("./app/models");
 
 require("dotenv").config();
 const env = process.env.NODE_ENV || "development";
@@ -34,7 +35,8 @@ class Zenflow {
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
 
-    const routes = new Routes(this.database.sequelize);
+    const models = new Model(this.database.sequelize);
+    const routes = new Routes(...models);
     app.use(routes);
 
     // catch 404 and forward to error handler

@@ -1,12 +1,11 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
 const Validator = require("../validators");
 const CreateUserValidator = require("../validators/createUser");
 const UpdateUserValidator = require("../validators/updateUser");
 
 class UserController {
-  constructor(sequelize) {
-    this.userModel = new User(sequelize);
+  constructor(userModel) {
+    this.userModel = userModel;
   }
 
   async index(req, res) {

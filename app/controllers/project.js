@@ -1,20 +1,11 @@
-const Project = require("../models/project");
 const Validator = require("../validators");
 const CreateProjectValidator = require("../validators/createProject");
 const UpdateProjectValidator = require("../validators/updateProject");
-const User = require("../models/user");
 
 class ProjectController {
-  constructor(sequelize) {
-    this.projectModel = new Project(sequelize);
-    this.userModel = new User(sequelize);
-
-    this.projectModel.belongsToMany(this.userModel, {
-      through: "ProjectUsers",
-    });
-    this.userModel.belongsToMany(this.projectModel, {
-      through: "ProjectUsers",
-    });
+  constructor(projectModel, userModel) {
+    this.projectModel = projectModel;
+    this.userModel = userModel;
   }
 
   async index(req, res) {

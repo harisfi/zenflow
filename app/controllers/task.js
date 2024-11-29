@@ -1,32 +1,12 @@
-const Task = require("../models/task");
-const User = require("../models/user");
-const Project = require("../models/project");
 const Validator = require("../validators");
 const CreateTaskValidator = require("../validators/createTask");
 const UpdateTaskValidator = require("../validators/updateTask");
 
 class TaskController {
-  constructor(sequelize) {
-    this.projectModel = new Project(sequelize);
-    this.taskModel = new Task(sequelize);
-    this.userModel = new User(sequelize);
-
-    this.projectModel.belongsToMany(this.userModel, {
-      through: "ProjectUsers",
-    });
-    this.userModel.belongsToMany(this.projectModel, {
-      through: "ProjectUsers",
-    });
-
-    this.taskModel.belongsToMany(this.userModel, {
-      through: "TaskUsers",
-    });
-    this.userModel.belongsToMany(this.taskModel, {
-      through: "TaskUsers",
-    });
-
-    this.projectModel.hasMany(this.taskModel);
-    this.taskModel.belongsTo(this.projectModel);
+  constructor(taskModel, projectModel, userModel) {
+    this.taskModel = taskModel;
+    this.projectModel = projectModel;
+    this.userModel = userModel;
   }
 
   async index(req, res) {
