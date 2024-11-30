@@ -15,9 +15,18 @@ class Routes {
       userModel
     );
 
-    router.get("/", function (req, res, next) {
-      res.send("Hello world!");
+    router.get("/login", function (req, res, next) {
+      res.render("auth/login");
     });
+
+    router.get("/register", function (req, res, next) {
+      res.render("auth/register");
+    });
+
+    router
+      .route("/")
+      .get(projectController.index.bind(projectController))
+      .post(projectController.store.bind(projectController));
 
     router
       .route("/users")
@@ -31,23 +40,18 @@ class Routes {
       .delete(userController.delete.bind(userController));
 
     router
-      .route("/projects")
-      .get(projectController.index.bind(projectController))
-      .post(projectController.store.bind(projectController));
-
-    router
-      .route("/projects/:projectId")
+      .route("/:projectId")
       .get(projectController.details.bind(projectController))
       .put(projectController.update.bind(projectController))
       .delete(projectController.delete.bind(projectController));
 
     router
-      .route("/tasks")
+      .route("/:projectId/tasks")
       .get(taskController.index.bind(taskController))
       .post(taskController.store.bind(taskController));
 
     router
-      .route("/tasks/:taskId")
+      .route("/:projectId/tasks/:taskId")
       .get(taskController.details.bind(taskController))
       .put(taskController.update.bind(taskController))
       .delete(taskController.delete.bind(taskController));

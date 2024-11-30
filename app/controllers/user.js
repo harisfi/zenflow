@@ -10,12 +10,13 @@ class UserController {
 
   async index(req, res) {
     try {
-      const users = await this.userModel.findAll();
+      // const users = await this.userModel.findAll();
 
-      res.json({
-        success: true,
-        data: users,
-      });
+      // res.json({
+      //   success: true,
+      //   data: users,
+      // });
+      res.render("users");
     } catch (error) {
       res.json({
         success: false,

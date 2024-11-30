@@ -11,16 +11,17 @@ class TaskController {
 
   async index(req, res) {
     try {
-      let tasks = await this.taskModel.findAll({
-        include: this.userModel,
-      });
+      // let tasks = await this.taskModel.findAll({
+      //   include: this.userModel,
+      // });
 
-      tasks = JSON.parse(JSON.stringify(tasks));
+      // tasks = JSON.parse(JSON.stringify(tasks));
 
-      res.json({
-        success: true,
-        data: tasks.map((e) => ({ ...e, sub_tasks: JSON.parse(e.sub_tasks) })),
-      });
+      // res.json({
+      //   success: true,
+      //   data: tasks.map((e) => ({ ...e, sub_tasks: JSON.parse(e.sub_tasks) })),
+      // });
+      res.render("tasks");
     } catch (error) {
       res.json({
         success: false,

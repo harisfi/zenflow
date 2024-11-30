@@ -10,14 +10,15 @@ class ProjectController {
 
   async index(req, res) {
     try {
-      const projects = await this.projectModel.findAll({
-        include: this.userModel,
-      });
+      // const projects = await this.projectModel.findAll({
+      //   include: this.userModel,
+      // });
 
-      res.json({
-        success: true,
-        data: projects,
-      });
+      // res.json({
+      //   success: true,
+      //   data: projects,
+      // });
+      res.render("projects");
     } catch (error) {
       res.json({
         success: false,
