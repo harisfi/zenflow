@@ -10,13 +10,9 @@ class UserController {
 
   async index(req, res) {
     try {
-      // const users = await this.userModel.findAll();
+      const users = await this.userModel.findAll();
 
-      // res.json({
-      //   success: true,
-      //   data: users,
-      // });
-      res.render("users");
+      res.render("users", { users });
     } catch (error) {
       res.json({
         success: false,
@@ -53,6 +49,16 @@ class UserController {
       const validator = new Validator(new CreateUserValidator());
       const validated = validator.validate(req.body);
 
+      const existingUser = await this.userModel.findOne({
+        where: {
+          email: validated.email,
+        },
+      });
+
+      if (existingUser) {
+        throw new Error("user already exist");
+      }
+
       const user = await this.userModel.create({
         ...validated,
         password: bcrypt.hashSync(validated.password, 10),
@@ -84,8 +90,20 @@ class UserController {
       const validator = new Validator(new UpdateUserValidator());
       const validated = validator.validate(req.body);
 
+      const existingUser = await this.userModel.findOne({
+        where: {
+          email: validated.email,
+        },
+      });
+
+      if (existingUser) {
+        throw new Error("user already exist");
+      }
+
       if (validated.password) {
         validated.password = bcrypt.hashSync(validated.password, 10);
+      } else {
+        validated.password = user.password;
       }
 
       await user.update(validated);

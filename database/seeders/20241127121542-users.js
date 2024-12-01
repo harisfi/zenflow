@@ -7,11 +7,21 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("Users", [
       {
-        name: "John Doe",
-        email: "example@example.com",
+        name: "Jansh Wells",
+        email: "jansh@example.com",
+        phone: "+628123456789",
+        position: "Web Designer",
+        tags: "Laravel,React",
+        password: bcrypt.hashSync("password", 10),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Denny Silva",
+        email: "denny@example.com",
         phone: "+628123456789",
         position: "Web Developer",
-        tags: "Laravel,React",
+        tags: "Laravel,Django",
         password: bcrypt.hashSync("password", 10),
         createdAt: new Date(),
         updatedAt: new Date(),

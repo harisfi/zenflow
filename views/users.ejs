@@ -61,9 +61,10 @@
                   </div>
                   <!-- end -->
                   <div class="row mt-4" id="employee-items">
+                    <% for(u of users) {%>
                     <div
                       class="col-xl-3 col-md-6 employee-item"
-                      id="employee-items-1"
+                      id="employee-items-<%= u.id %>"
                     >
                       <div class="card">
                         <div class="card-body">
@@ -85,7 +86,7 @@
                                   href="javascript: void(0);"
                                   data-bs-toggle="modal"
                                   data-bs-target=".bs-example-edit-employee"
-                                  onclick="editProjects('employee-items-1')"
+                                  onclick="editEmployee('employee-items-<%= u.id %>')"
                                 >
                                   <i
                                     class="mdi mdi-file-document-edit-outline me-2"
@@ -94,8 +95,8 @@
                                 >
                                 <a
                                   class="dropdown-item text-danger delete-item"
-                                  onclick="deleteEmployee('employee-items-1')"
-                                  data-id="employee-items-1"
+                                  onclick="deleteEmployee('employee-items-<%= u.id %>')"
+                                  data-id="employee-items-<%= u.id %>"
                                   href="javascript: void(0);"
                                   ><i class="mdi mdi-trash-can-outline me-2"></i
                                   >Remove</a
@@ -106,22 +107,20 @@
 
                           <div class="text-center">
                             <img
-                              src="/assets/images/users/avatar-10.jpg"
-                              class="avatar-lg img-fluid rounded-circle employee-image"
+                              src="https://api.dicebear.com/9.x/identicon/svg?seed=<%= u.name %>"
+                              class="avatar-lg img-fluid rounded-circle employee-image border border-dark-subtle"
                               data-type="image"
                               alt="user-image"
                             />
                             <h6 class="font-size-15 mt-3 mb-1">
-                              <a
-                                href="user-profile.html"
-                                class="text-primary employee-name"
-                                >Jansh Wells</a
+                              <a href="#" class="text-primary employee-name"
+                                ><%= u.name %></a
                               >
                             </h6>
                             <p
                               class="text-muted mb-0 font-size-12 fw-medium employee-designation"
                             >
-                              Web Designer
+                              <%= u.position %>
                             </p>
                           </div>
 
@@ -131,17 +130,15 @@
                             <div>
                               <p class="text-muted fw-medium mb-0">Tag :</p>
                             </div>
+                            <% if(u.tags) { %>
                             <div class="employee-tags d-flex flex-wrap gap-1">
+                              <% for(t of u.tags.split(',')) { %>
                               <span class="badge badge-soft-secondary p-2"
-                                >Html</span
+                                ><%= t %></span
                               >
-                              <span class="badge badge-soft-secondary p-2"
-                                >Css</span
-                              >
-                              <span class="badge badge-soft-secondary p-2"
-                                >Bootstrap</span
-                              >
+                              <% } %>
                             </div>
+                            <% } else { %> - <% } %>
                           </div>
                         </div>
                         <!-- end card body -->
@@ -155,7 +152,7 @@
                                     class="text-muted employee-email"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="top"
-                                    data-bs-original-title="janshwellsprobic.com"
+                                    data-bs-original-title="<%= u.email %>"
                                   >
                                     <i
                                       class="mdi mdi-email-outline align-middle me-2"
@@ -174,7 +171,7 @@
                                     class="text-muted employee-phoneno"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="top"
-                                    data-bs-original-title="050 519 9488"
+                                    data-bs-original-title="<%= u.phone %>"
                                   >
                                     <i
                                       class="mdi mdi-phone-outline align-middle me-2"
@@ -192,140 +189,7 @@
                       </div>
                       <!-- end card -->
                     </div>
-                    <!-- end col -->
-
-                    <div
-                      class="col-xl-3 col-md-6 employee-item"
-                      id="employee-items-2"
-                    >
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="text-end">
-                            <div class="dropdown">
-                              <a
-                                href="#"
-                                class="dropdown-toggle font-size-16 text-muted"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <i class="mdi mdi-dots-horizontal"></i>
-                              </a>
-
-                              <div class="dropdown-menu dropdown-menu-end">
-                                <a
-                                  class="dropdown-item text-primary"
-                                  href="javascript: void(0);"
-                                  data-bs-toggle="modal"
-                                  data-bs-target=".bs-example-edit-employee"
-                                  onclick="editProjects('employee-items-2')"
-                                >
-                                  <i
-                                    class="mdi mdi-file-document-edit-outline me-2"
-                                  ></i
-                                  >Edit</a
-                                >
-                                <a
-                                  class="dropdown-item text-danger delete-item"
-                                  onclick="deleteEmployee('employee-items-2')"
-                                  data-id="employee-items-2"
-                                  href="javascript: void(0);"
-                                  ><i class="mdi mdi-trash-can-outline me-2"></i
-                                  >Remove</a
-                                >
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="text-center">
-                            <img
-                              src="/assets/images/users/avatar-2.jpg"
-                              class="avatar-lg img-fluid rounded-circle employee-image"
-                              data-type="image"
-                              alt="user-image"
-                            />
-                            <h6 class="font-size-15 mt-3 mb-1">
-                              <a
-                                href="user-profile.html"
-                                class="text-primary employee-name"
-                                >Denny Silva</a
-                              >
-                            </h6>
-                            <p
-                              class="text-muted mb-0 font-size-12 fw-medium employee-designation"
-                            >
-                              Web Developer
-                            </p>
-                          </div>
-
-                          <div
-                            class="d-flex flex-wrap gap-2 mt-3 justify-content-center"
-                          >
-                            <div>
-                              <p class="text-muted fw-medium mb-0">Tag :</p>
-                            </div>
-                            <div class="employee-tags d-flex flex-wrap gap-1">
-                              <span class="badge badge-soft-secondary p-2"
-                                >Laravel</span
-                              >
-                              <span class="badge badge-soft-secondary p-2"
-                                >Django</span
-                              >
-                              <span class="badge badge-soft-secondary p-2"
-                                >Python</span
-                              >
-                            </div>
-                          </div>
-                        </div>
-                        <!-- end card body -->
-                        <div class="card-footer p-0">
-                          <div class="row g-0">
-                            <div class="col-6">
-                              <div class="text-center border-end p-3">
-                                <h6 class="font-size-14 mb-0">
-                                  <a
-                                    href="javascript: void(0);"
-                                    class="text-muted employee-email"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    data-bs-original-title="dennysilva@probic.com"
-                                  >
-                                    <i
-                                      class="mdi mdi-email-outline align-middle me-2"
-                                    ></i
-                                    >E-mail
-                                  </a>
-                                </h6>
-                              </div>
-                            </div>
-                            <!-- end col -->
-                            <div class="col-6">
-                              <div class="text-center p-3">
-                                <h6 class="font-size-14 text-muted mb-0">
-                                  <a
-                                    href="javascript: void(0);"
-                                    class="text-muted employee-phoneno"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    data-bs-original-title="044 062 2075"
-                                  >
-                                    <i
-                                      class="mdi mdi-phone-outline align-middle me-2"
-                                    ></i
-                                    >Phone
-                                  </a>
-                                </h6>
-                              </div>
-                            </div>
-                            <!-- end col -->
-                          </div>
-                          <!-- end row -->
-                        </div>
-                        <!-- end card-footer -->
-                      </div>
-                      <!-- end card -->
-                    </div>
-                    <!-- end col -->
+                    <% } %>
                   </div>
                   <!-- end row -->
                 </div>
@@ -350,13 +214,13 @@
             <div class="modal-content border-0">
               <div class="modal-header bg-soft-primary">
                 <h5
-                  class="modal-title font-size-16 text-primary add-task-title"
+                  class="modal-title font-size-16 text-primary add-employee-title"
                   id="addProjectModal"
                 >
                   Add User
                 </h5>
                 <h5
-                  class="modal-title font-size-16 text-primary update-task-title"
+                  class="modal-title font-size-16 text-primary update-employee-title"
                   id="updateProjectModal"
                   style="display: none"
                 >
@@ -365,51 +229,13 @@
                 <button
                   type="button"
                   class="btn-close"
-                  id="update-emplyoee"
+                  id="update-employee"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
               </div>
               <div class="modal-body p-4">
-                <form id="NewtaskForm">
-                  <div class="text-center">
-                    <div class="mb-3 profile-user">
-                      <div
-                        class="employee-image"
-                        id="employee-image-form"
-                        data-type="text"
-                      >
-                        <div
-                          class="avatar-lg mx-auto img-thumbnail rounded-circle"
-                        >
-                          <span
-                            class="avatar-title rounded-circle fs-4 bg-soft-primary text-primary"
-                          >
-                            <i data-feather="user"></i>
-                          </span>
-                        </div>
-                      </div>
-                      <div
-                        class="avatar-sm p-0 rounded-circle profile-photo-edit"
-                      >
-                        <input
-                          id="profile-img-file-input"
-                          type="file"
-                          class="profile-img-file-input"
-                        />
-                        <label
-                          for="profile-img-file-input"
-                          class="profile-photo-edit avatar-sm"
-                        >
-                          <span
-                            class="avatar-title rounded-circle bg-light text-body"
-                          >
-                            <i class="mdi mdi-camera"></i>
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
+                <form id="NewemployeeForm">
                   <div class="mb-3">
                     <label for="employeeName" class="form-label">Name</label>
                     <input
@@ -462,7 +288,7 @@
                     </div>
                   </div>
                   <!-- end-->
-                  <div class="row">
+                  <div class="row mb-3">
                     <div class="col-sm-6">
                       <div class="mb-3 mb-sm-0">
                         <label for="exampleEmailId" class="form-label"
@@ -490,6 +316,36 @@
                     </div>
                     <!-- end col -->
                   </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="mb-3 mb-sm-0">
+                        <label for="Password" class="form-label"
+                          >Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="Password"
+                          placeholder="Enter New Password"
+                        />
+                      </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-sm-6">
+                      <div>
+                        <label for="PasswordConfirmation" class="form-label"
+                          >Password Confirmation</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="PasswordConfirmation"
+                          placeholder="Enter New Password Again"
+                        />
+                      </div>
+                    </div>
+                    <!-- end col -->
+                  </div>
                   <!-- end row -->
                 </form>
               </div>
@@ -501,13 +357,17 @@
                 >
                   Cancel
                 </button>
-                <button type="button" class="btn btn-soft-primary" id="addtask">
+                <button
+                  type="button"
+                  class="btn btn-soft-primary"
+                  id="addemployee"
+                >
                   Add
                 </button>
                 <button
                   type="button"
                   class="btn btn-soft-primary"
-                  id="updatetaskdetail"
+                  id="updateemployeedetail"
                 >
                   Update
                 </button>
@@ -525,10 +385,9 @@
     <!-- END layout-wrapper -->
 
     <!-- JAVASCRIPT -->
+    <%- include('partials/scripts'); %>
 
     <!-- profile js -->
     <script src="/assets/js/pages/employee.init.js"></script>
-
-    <%- include('partials/scripts'); %>
   </body>
 </html>
