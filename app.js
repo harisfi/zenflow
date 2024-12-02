@@ -1,5 +1,6 @@
 const createError = require("http-errors");
 const express = require("express");
+const session = require("express-session");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -32,6 +33,29 @@ class Zenflow {
     app.use(logger("dev"));
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
+    app.use(
+      session({
+        resave: false,
+        saveUninitialized: false,
+        secret: "shhhh, very secret",
+      })
+    );
+
+    app.use(function (req, res, next) {
+      var err = req.session.error;
+      var msg = req.session.success;
+      delete req.session.error;
+      delete req.session.success;
+      res.locals.message = "";
+      res.locals.state = "success";
+      if (err) {
+        res.locals.message = err;
+        res.locals.state = "danger";
+      }
+      if (msg) res.locals.message = msg;
+      next();
+    });
+
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
 

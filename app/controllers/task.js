@@ -21,7 +21,9 @@ class TaskController {
       //   success: true,
       //   data: tasks.map((e) => ({ ...e, sub_tasks: JSON.parse(e.sub_tasks) })),
       // });
-      res.render("tasks");
+      res.render("tasks", {
+        currentUser: req.session.user,
+      });
     } catch (error) {
       res.json({
         success: false,

@@ -41,20 +41,20 @@
           aria-expanded="false"
         >
           <img
-            class="rounded-circle header-profile-user"
-            src="/assets/images/users/avatar-10.jpg"
+            class="rounded-circle header-profile-user bg-light"
+            src="https://api.dicebear.com/9.x/identicon/svg?seed=<%= currentUser.name %>"
             alt="Header Avatar"
           />
           <span class="ms-2 d-none d-sm-block user-item-desc">
-            <span class="user-name">Jansh Wells</span>
-            <span class="user-sub-title">Administrator</span>
+            <span class="user-name"><%= currentUser.name %></span>
+            <span class="user-sub-title"><%= currentUser.email %></span>
           </span>
         </button>
         <div class="dropdown-menu dropdown-menu-end pt-0">
           <div class="p-3 bg-primary border-bottom">
-            <h6 class="mb-0 text-white">Jansh Wells</h6>
+            <h6 class="mb-0 text-white"><%= currentUser.name %></h6>
             <p class="mb-0 font-size-11 text-white-50 fw-semibold">
-              Janshwells@probic.com
+              <%= currentUser.email %>
             </p>
           </div>
           <a class="dropdown-item" href="/logout"

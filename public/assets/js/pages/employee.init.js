@@ -41,9 +41,11 @@ async function editEmployee(employeeId) {
     document.querySelector("#PhoneNo").value = data.phone;
 
     multipleCancelButton.removeActiveItems();
-    data.tags
-      .split(",")
-      .forEach((tag) => multipleCancelButton.setChoiceByValue(tag));
+    if (data.tags) {
+      data.tags
+        .split(",")
+        .forEach((tag) => multipleCancelButton.setChoiceByValue(tag));
+    }
 
     toggleFormVisibility(true);
   } catch (error) {

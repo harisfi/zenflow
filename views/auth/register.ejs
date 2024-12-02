@@ -31,14 +31,32 @@
                     <div class="mb-4 text-center">
                       <h5 class="mb-1">Register Account</h5>
                       <p class="text-muted">Get your Zenflow account now.</p>
+                      <% if (message) {%>
+                      <div
+                        class="alert alert-<%- state %> alert-outline alert-dismissible fade show text-start"
+                        role="alert"
+                      >
+                        <i
+                          class="uil uil-exclamation-octagon font-size-16 text-<%- state %> me-2"
+                        ></i>
+                        <%- message %>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="alert"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <% } %>
                     </div>
-                    <form class="form-horizontal mt-3">
+                    <form class="form-horizontal mt-3" method="post">
                       <div class="mb-3">
                         <label class="form-label" for="emailID">Email</label>
                         <input
                           type="text"
                           class="form-control"
                           id="emailID"
+                          name="email"
                           placeholder="Enter e-mail"
                         />
                       </div>
@@ -52,6 +70,7 @@
                             type="password"
                             class="form-control"
                             id="password-input"
+                            name="password"
                             placeholder="Enter password"
                           />
                           <button
@@ -73,6 +92,7 @@
                               type="checkbox"
                               class="form-check-input me-1"
                               id="customControlInline"
+                              required
                             />
                             <label
                               class="form-label text-muted font-size-13"

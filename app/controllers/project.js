@@ -1,4 +1,4 @@
-const dayjs = require('dayjs');
+const dayjs = require("dayjs");
 const Validator = require("../validators");
 const CreateProjectValidator = require("../validators/createProject");
 const UpdateProjectValidator = require("../validators/updateProject");
@@ -16,7 +16,12 @@ class ProjectController {
       });
       const users = await this.userModel.findAll();
 
-      res.render("projects", { projects, users, dayjs });
+      res.render("projects", {
+        projects,
+        users,
+        dayjs,
+        currentUser: req.session.user,
+      });
     } catch (error) {
       res.json({
         success: false,

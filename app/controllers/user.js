@@ -12,7 +12,7 @@ class UserController {
     try {
       const users = await this.userModel.findAll();
 
-      res.render("users", { users });
+      res.render("users", { users, currentUser: req.session.user });
     } catch (error) {
       res.json({
         success: false,
@@ -96,7 +96,7 @@ class UserController {
         },
       });
 
-      if (existingUser) {
+      if (existingUser.id != user.id) {
         throw new Error("user already exist");
       }
 
@@ -107,6 +107,10 @@ class UserController {
       }
 
       await user.update(validated);
+
+      if (req.session.user.id == user.id) {
+        req.session.user = user;
+      }
 
       res.json({
         success: true,
@@ -127,7 +131,7 @@ class UserController {
         where: { id },
       });
 
-      if (!user) {
+      if (!user || req.session.user.id == user.id) {
         throw new Error("user not found");
       }
 
