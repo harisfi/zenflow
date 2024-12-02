@@ -1,3 +1,4 @@
+const dayjs = require('dayjs');
 const Validator = require("../validators");
 const CreateProjectValidator = require("../validators/createProject");
 const UpdateProjectValidator = require("../validators/updateProject");
@@ -10,15 +11,12 @@ class ProjectController {
 
   async index(req, res) {
     try {
-      // const projects = await this.projectModel.findAll({
-      //   include: this.userModel,
-      // });
+      const projects = await this.projectModel.findAll({
+        include: this.userModel,
+      });
+      const users = await this.userModel.findAll();
 
-      // res.json({
-      //   success: true,
-      //   data: projects,
-      // });
-      res.render("projects");
+      res.render("projects", { projects, users, dayjs });
     } catch (error) {
       res.json({
         success: false,

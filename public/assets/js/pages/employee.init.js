@@ -40,7 +40,7 @@ async function editEmployee(employeeId) {
     document.querySelector("#exampleEmailId").value = data.email;
     document.querySelector("#PhoneNo").value = data.phone;
 
-    multipleCancelButton.clearInput();
+    multipleCancelButton.removeActiveItems();
     data.tags
       .split(",")
       .forEach((tag) => multipleCancelButton.setChoiceByValue(tag));

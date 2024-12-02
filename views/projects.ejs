@@ -57,7 +57,11 @@
               </div>
 
               <div class="row mt-4" id="all-projects">
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-1">
+                <% for(p of projects) {%>
+                <div
+                  class="col-xl-3 col-md-6 team-box"
+                  id="project-items-<%= p.id %>"
+                >
                   <div class="card">
                     <div class="card-body">
                       <div class="d-flex mb-3">
@@ -65,9 +69,12 @@
                           <div>
                             <h6 class="mb-0 text-muted">
                               <i
-                                class="mdi mdi-circle-medium text-danger fs-3 align-middle"
+                                class="mdi mdi-circle-medium text-<%= p.status == 'PENDING' ? 'danger' : p.status == 'PROGRESS' ? 'warning' : 'success' %> fs-3 align-middle"
                               ></i>
-                              <span class="team-date">21 Jan, 2024</span>
+                              <span class="team-date"
+                                ><%= dayjs(p.createdAt).format('DD MMM, YYYY')
+                                %></span
+                              >
                             </h6>
                           </div>
                         </div>
@@ -87,16 +94,12 @@
                               href="javascript: void(0);"
                               data-bs-toggle="modal"
                               data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-1')"
+                              onclick="editProjects('project-items-<%= p.id %>')"
                               >Edit</a
                             >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
                             <a
                               class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-1')"
+                              onclick="deleteProjects('project-items-<%= p.id %>')"
                               data-id="project-items-1"
                               href="javascript: void(0);"
                               >Delete</a
@@ -107,16 +110,17 @@
 
                       <div class="mb-4">
                         <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">Marketing</a>
+                          <a href="/<%= p.id %>/tasks"><%= p.name %></a>
                         </h5>
                         <p class="text-muted mb-0 team-description">
-                          Every Marketing Plan Needs
+                          <%= p.details %>
                         </p>
                       </div>
                       <div class="d-flex">
                         <div
                           class="avatar-group float-start flex-grow-1 task-assigne"
                         >
+                          <% for(u of p.Users) {%>
                           <div class="avatar-group-item">
                             <a
                               href="javascript: void(0);"
@@ -124,54 +128,22 @@
                               data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               value="member-6"
-                              title="Terrell Soto"
+                              title="<%= u.name %>"
                             >
                               <img
-                                src="/assets/images/users/avatar-6.jpg"
+                                src="https://api.dicebear.com/9.x/identicon/svg?seed=<%= u.name %>"
                                 alt=""
                                 class="rounded-circle avatar-sm"
                               />
                             </a>
                           </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-1"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Ruhi Shah"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-1.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-block"
-                              data-bs-toggle="tooltip"
-                              value="member-17"
-                              data-bs-placement="top"
-                              title="Felix Schulze"
-                            >
-                              <div class="avatar-sm">
-                                <div
-                                  class="avatar-title rounded-circle bg-purple"
-                                >
-                                  F
-                                </div>
-                              </div>
-                            </a>
-                          </div>
+                          <% } %>
                         </div>
                         <!-- end avatar group -->
                         <div class="align-self-end">
-                          <span class="badge badge-soft-danger p-2 team-status"
-                            >Pending</span
+                          <span
+                            class="badge badge-soft-<%= p.status == 'PENDING' ? 'danger' : p.status == 'PROGRESS' ? 'warning' : 'success' %> p-2 team-status"
+                            ><%= p.status %></span
                           >
                         </div>
                       </div>
@@ -180,706 +152,7 @@
                   </div>
                   <!-- end card -->
                 </div>
-                <!-- end col -->
-
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-2">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex mb-3">
-                        <div class="flex-grow-1 align-items-start">
-                          <div>
-                            <h6 class="mb-0 text-muted">
-                              <i
-                                class="mdi mdi-circle-medium text-warning fs-3 align-middle"
-                              ></i
-                              ><span class="team-date">21 Dec, 2024</span>
-                            </h6>
-                          </div>
-                        </div>
-                        <div class="dropdown ms-2">
-                          <a
-                            href="#"
-                            class="dropdown-toggle font-size-16 text-muted"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a
-                              class="dropdown-item"
-                              href="javascript: void(0);"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-2')"
-                              >Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a
-                              class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-2')"
-                              data-id="project-items-2"
-                              href="javascript: void(0);"
-                              >Delete</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="mb-4">
-                        <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">App Development</a>
-                        </h5>
-                        <p class="text-muted mb-0 team-description">
-                          They specialise in mobile technology apps.
-                        </p>
-                      </div>
-                      <div class="d-flex">
-                        <div
-                          class="avatar-group float-start flex-grow-1 task-assigne"
-                        >
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-3"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Julia Wilson"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-3.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-7"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Amber Nelson"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-7.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-8"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Marti Sampson"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-8.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <div>
-                              <div class="avatar-sm">
-                                <span
-                                  class="avatar-title rounded-circle bg-primary text-white font-size-14"
-                                >
-                                  +4
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- end avatar group -->
-                        <div class="align-self-end">
-                          <span class="badge badge-soft-warning p-2 team-status"
-                            >Progress</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end card body -->
-                  </div>
-                  <!-- end card -->
-                </div>
-                <!-- end col -->
-
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex mb-3">
-                        <div class="flex-grow-1 align-items-start">
-                          <div>
-                            <h6 class="mb-0 text-muted">
-                              <i
-                                class="mdi mdi-circle-medium text-success fs-3 align-middle"
-                              ></i
-                              ><span class="team-date">19 Dec, 2024</span>
-                            </h6>
-                          </div>
-                        </div>
-                        <div class="dropdown ms-2">
-                          <a
-                            href="#"
-                            class="dropdown-toggle font-size-16 text-muted"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a
-                              class="dropdown-item"
-                              href="javascript: void(0);"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-3')"
-                              >Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a
-                              class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-3')"
-                              data-id="project-items-3"
-                              href="javascript: void(0);"
-                              >Delete</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="mb-4">
-                        <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">Website Design</a>
-                        </h5>
-                        <p class="text-muted mb-0 team-description">
-                          Creating the design and layout of a website.
-                        </p>
-                      </div>
-                      <div class="d-flex">
-                        <div
-                          class="avatar-group float-start flex-grow-1 task-assigne"
-                        >
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-10"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Kelly Osborn"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-10.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-2"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="John Page"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-2.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                        </div>
-                        <!-- end avatar group -->
-                        <div class="align-self-end">
-                          <span class="badge badge-soft-success p-2 team-status"
-                            >Completed</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end card body -->
-                  </div>
-                  <!-- end card -->
-                </div>
-                <!-- end col -->
-
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex mb-3">
-                        <div class="flex-grow-1 align-items-start">
-                          <div>
-                            <h6 class="mb-0 text-muted">
-                              <i
-                                class="mdi mdi-circle-medium text-warning fs-3 align-middle"
-                              ></i>
-                              <span class="team-date">25 Oct,2024</span>
-                            </h6>
-                          </div>
-                        </div>
-                        <div class="dropdown ms-2">
-                          <a
-                            href="#"
-                            class="dropdown-toggle font-size-16 text-muted"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a
-                              class="dropdown-item"
-                              href="javascript: void(0);"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-4')"
-                              >Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a
-                              class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-4')"
-                              data-id="project-items-4"
-                              href="javascript: void(0);"
-                              >Delete</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="mb-4">
-                        <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">UI / UX Design</a>
-                        </h5>
-                        <p class="text-muted mb-0 team-description">
-                          Plan and onduct user research and analysis
-                        </p>
-                      </div>
-                      <div class="d-flex">
-                        <div
-                          class="avatar-group float-start flex-grow-1 task-assigne"
-                        >
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-3"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Judy Newland"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-3.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-5"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Jeffery Legette"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-5.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-block"
-                              data-bs-toggle="tooltip"
-                              value="member-16"
-                              data-bs-placement="top"
-                              title="Nishant Rosborough"
-                            >
-                              <div class="avatar-sm">
-                                <div
-                                  class="avatar-title rounded-circle bg-primary"
-                                >
-                                  N
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <!-- end avatar group -->
-                        <div class="align-self-end">
-                          <span class="badge badge-soft-warning p-2 team-status"
-                            >Progress</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end crad-body -->
-                  </div>
-                  <!-- end card -->
-                </div>
-                <!-- end col -->
-
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-5">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex mb-3">
-                        <div class="flex-grow-1 align-items-start">
-                          <div>
-                            <h6 class="mb-0 text-muted">
-                              <i
-                                class="mdi mdi-circle-medium text-danger fs-3 align-middle"
-                              ></i
-                              ><span class="team-date">23 Sep, 2024</span>
-                            </h6>
-                          </div>
-                        </div>
-                        <div class="dropdown ms-2">
-                          <a
-                            href="#"
-                            class="dropdown-toggle font-size-16 text-muted"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a
-                              class="dropdown-item"
-                              href="javascript: void(0);"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-5')"
-                              >Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a
-                              class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-5')"
-                              data-id="project-items-5"
-                              href="javascript: void(0);"
-                              >Delete</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="mb-4">
-                        <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">Testing</a>
-                        </h5>
-                        <p class="text-muted mb-0 team-description">
-                          The procurement specifications should describe
-                        </p>
-                      </div>
-                      <div class="d-flex">
-                        <div
-                          class="avatar-group float-start flex-grow-1 task-assigne"
-                        >
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-10"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Marti Sampson"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-10.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                        </div>
-                        <!-- end avatar group -->
-                        <div class="align-self-end">
-                          <span class="badge badge-soft-danger p-2 team-status"
-                            >Pending</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end card-body -->
-                  </div>
-                  <!-- end card -->
-                </div>
-                <!-- end col -->
-
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex mb-3">
-                        <div class="flex-grow-1 align-items-start">
-                          <div>
-                            <h6 class="mb-0 text-muted">
-                              <i
-                                class="mdi mdi-circle-medium text-danger fs-3 align-middle"
-                              ></i
-                              ><span class="team-date">10 Feb, 2024</span>
-                            </h6>
-                          </div>
-                        </div>
-                        <div class="dropdown ms-2">
-                          <a
-                            href="#"
-                            class="dropdown-toggle font-size-16 text-muted"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a
-                              class="dropdown-item"
-                              href="javascript: void(0);"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-6')"
-                              >Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a
-                              class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-6')"
-                              data-id="project-items-6"
-                              href="javascript: void(0);"
-                              >Delete</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="mb-4">
-                        <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">Layouting</a>
-                        </h5>
-                        <p class="text-muted mb-0 team-description">
-                          Page layout, the arrangement of visual elements
-                        </p>
-                      </div>
-                      <div class="d-flex">
-                        <div
-                          class="avatar-group float-start flex-grow-1 task-assigne"
-                        >
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-5"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Derek McColl"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-5.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-6"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Walter Weisz"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-6.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                        </div>
-                        <!-- end avatar group -->
-                        <div class="align-self-end">
-                          <span class="badge badge-soft-danger p-2 team-status"
-                            >Pending</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- end col -->
-
-                <div class="col-xl-3 col-md-6 team-box" id="project-items-7">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex mb-3">
-                        <div class="flex-grow-1 align-items-start">
-                          <div>
-                            <h6 class="mb-0 text-muted">
-                              <i
-                                class="mdi mdi-circle-medium text-danger fs-3 align-middle"
-                              ></i>
-                              <span class="team-date">13 Apr, 2024</span>
-                            </h6>
-                          </div>
-                        </div>
-                        <div class="dropdown ms-2">
-                          <a
-                            href="#"
-                            class="dropdown-toggle font-size-16 text-muted"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a
-                              class="dropdown-item"
-                              href="javascript: void(0);"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bs-example-new-project"
-                              onclick="editProjects('project-items-7')"
-                              >Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript: void(0);"
-                              >Share</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a
-                              class="dropdown-item delete-item"
-                              onclick="deleteProjects('project-items-7')"
-                              data-id="project-items-7"
-                              href="javascript: void(0);"
-                              >Delete</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="mb-4">
-                        <h5 class="mb-1 font-size-17 team-title">
-                          <a href="/1/tasks">Dashboard Design</a>
-                        </h5>
-                        <p class="text-muted mb-0 team-description">
-                          A dashboard is a tool used for information.
-                        </p>
-                      </div>
-                      <div class="d-flex">
-                        <div
-                          class="avatar-group float-start flex-grow-1 task-assigne"
-                        >
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-1"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Jaime Cormier"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-1.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-5"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Cristina Manhart"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-5.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a
-                              href="javascript: void(0);"
-                              class="d-inline-block"
-                              value="member-8"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Jeffrey Shook"
-                            >
-                              <img
-                                src="/assets/images/users/avatar-8.jpg"
-                                alt=""
-                                class="rounded-circle avatar-sm"
-                              />
-                            </a>
-                          </div>
-                          <div class="avatar-group-item">
-                            <a href="javascript: void(0);">
-                              <div class="avatar-sm">
-                                <span
-                                  class="avatar-title rounded-circle bg-warning text-white font-size-14"
-                                >
-                                  +3
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <!-- end avatar group -->
-                        <div class="align-self-end">
-                          <span class="badge badge-soft-danger p-2 team-status"
-                            >Pending</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- end col -->
+                <% } %>
               </div>
               <!-- end row -->
             </div>
@@ -951,14 +224,6 @@
                       />
                     </div>
                   </div>
-                  <!-- end row -->
-                  <!-- <div class="row mb-3">
-                                <label for="task-due-date" class="col-sm-2 col-form-label pt-0 pt-sm-2">Timeline</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="date" value="" id="task-due-date"
-                                        data-date-format="d M, Y" placeholder="Enter Date">
-                                </div>
-                            </div>end row -->
                   <div class="row mb-3 mt-3 mt-xl-0">
                     <label class="col-sm-2 col-form-label pt-0 pt-sm-2"
                       >Status</label
@@ -971,9 +236,9 @@
                         id="team-status"
                       >
                         <option value="">Choose...</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Progress">Progress</option>
-                        <option value="Pending">Pending</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="PROGRESS">Progress</option>
+                        <option value="PENDING">Pending</option>
                       </select>
                     </div>
                     <!-- end col -->
@@ -987,6 +252,7 @@
                       data-simplebar
                       style="max-height: 152px"
                     >
+                      <% for(u of users) {%>
                       <li>
                         <div
                           class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
@@ -994,382 +260,23 @@
                           <input
                             class="form-check-input me-3"
                             type="checkbox"
-                            id="member-1"
+                            id="member-<%= u.id %>"
                             name="member[]"
                             data-type="image"
                           />
                           <img
-                            src="/assets/images/users/avatar-1.jpg"
+                            src="https://api.dicebear.com/9.x/identicon/svg?seed=<%= u.name %>"
                             class="rounded-circle avatar-sm"
                             alt=""
                           />
                           <label
                             class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-1"
-                            >Albert Rodarte</label
+                            for="member-<%= u.id %>"
+                            ><%= u.name %></label
                           >
                         </div>
                       </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-2"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-2.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-2"
-                            >Denny Silva</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-10"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-10.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-10"
-                            >Jansh Wells</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-3"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-3.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-3"
-                            >Adrian Rodarte</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-4"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-4.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-4"
-                            >Frank Hamilton</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-5"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-5.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-5"
-                            >Justin Howard</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-6"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-6.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-6"
-                            >Michael Lawrence</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-7"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-7.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-7"
-                            >Oliver Sharp</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-8"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-8.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-8"
-                            >Richard Simpson</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-9"
-                            name="member[]"
-                            data-type="image"
-                          />
-                          <img
-                            src="/assets/images/users/avatar-9.jpg"
-                            class="rounded-circle avatar-sm"
-                            alt=""
-                          />
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-9"
-                            >Dan Gibson</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-15"
-                            name="member[]"
-                            data-type="dataimage"
-                          />
-                          <div class="avatar-sm">
-                            <div class="avatar-title rounded-circle bg-primary">
-                              D
-                            </div>
-                          </div>
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-15"
-                            >Den Hudda</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-12"
-                            name="member[]"
-                            data-type="dataimage"
-                          />
-                          <div class="avatar-sm">
-                            <div class="avatar-title rounded-circle bg-purple">
-                              J
-                            </div>
-                          </div>
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-12"
-                            >Jim Lee</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-13"
-                            name="member[]"
-                            data-type="dataimage"
-                          />
-                          <div class="avatar-sm">
-                            <div class="avatar-title rounded-circle bg-primary">
-                              V
-                            </div>
-                          </div>
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-13"
-                            >Vihan Bragg</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-14"
-                            name="member[]"
-                            data-type="dataimage"
-                          />
-                          <div class="avatar-sm">
-                            <div class="avatar-title rounded-circle bg-purple">
-                              L
-                            </div>
-                          </div>
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-14"
-                            >Lisa Freeman</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-16"
-                            name="member[]"
-                            data-type="dataimage"
-                          />
-                          <div class="avatar-sm">
-                            <div class="avatar-title rounded-circle bg-primary">
-                              N
-                            </div>
-                          </div>
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-16"
-                            >Nishant Rosborough</label
-                          >
-                        </div>
-                      </li>
-                      <!-- end li -->
-                      <li>
-                        <div
-                          class="form-check form-check-primary font-size-16 d-flex align-items-center"
-                        >
-                          <input
-                            class="form-check-input me-3"
-                            type="checkbox"
-                            id="member-17"
-                            name="member[]"
-                            data-type="dataimage"
-                          />
-                          <div class="avatar-sm">
-                            <div class="avatar-title rounded-circle bg-purple">
-                              F
-                            </div>
-                          </div>
-                          <label
-                            class="form-check-label font-size-14 ms-3 mb-0"
-                            for="member-17"
-                            >Felix Schulze</label
-                          >
-                        </div>
-                      </li>
+                      <% } %>
                       <!-- end li -->
                     </ul>
                     <!-- end ul -->
@@ -1416,6 +323,7 @@
     <!-- END layout-wrapper -->
 
     <!-- JAVASCRIPT -->
+    <%- include('partials/scripts'); %>
 
     <!-- flatpickr js -->
     <script src="/assets/libs/flatpickr/flatpickr.min.js"></script>
@@ -1423,9 +331,9 @@
     <!-- flatpickr init -->
     <script src="/assets/js/pages/flatpickr.init.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
     <!-- projects init js -->
     <script src="/assets/js/pages/team-project.init.js"></script>
-
-    <%- include('partials/scripts'); %>
   </body>
 </html>
