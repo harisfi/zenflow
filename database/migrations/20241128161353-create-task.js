@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      code: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -20,13 +24,8 @@ module.exports = {
         type: Sequelize.DATE,
       },
       category: {
-        type: Sequelize.STRING,
-      },
-      progress: {
-        type: Sequelize.INTEGER,
-      },
-      sub_tasks: {
-        type: Sequelize.JSON,
+        allowNull: false,
+        type: Sequelize.ENUM("DESIGN", "DEVELOPMENT", "MAINTENANCE"),
       },
       stage: {
         allowNull: false,

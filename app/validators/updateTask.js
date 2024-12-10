@@ -3,23 +3,18 @@ const { object, string, array, number, date, boolean } = require("yup");
 class UpdateTaskValidator {
   validate(input) {
     const schema = object({
-      name: string().required(),
+      code: string().nullable(),
+      name: string().nullable(),
       description: string().nullable(),
       due_date: date().nullable(),
-      category: string().nullable(),
-      progress: number().nullable(),
-      sub_tasks: array(
-        object({
-          name: string().required(),
-          is_completed: boolean().required(),
-          sequence: number().required(),
-        })
-      ).nullable(),
+      category: string()
+        .oneOf(["DESIGN", "DEVELOPMENT", "MAINTENANCE"])
+        .nullable(),
       stage: string()
         .oneOf(["BACKLOG", "WAITING", "DOING", "REVIEW", "DONE"])
-        .required(),
-      project_id: number().required(),
-      user_ids: array(number()),
+        .nullable(),
+      project_id: number().nullable(),
+      user_ids: array(number()).nullable(),
     });
     return schema.validateSync(input);
   }

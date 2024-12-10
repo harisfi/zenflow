@@ -1,0 +1,166 @@
+<div
+  class="modal fade bs-task-details-edit"
+  tabindex="-1"
+  role="dialog"
+  id="modalForm"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0 add-task-title" id="add-task-title">
+          Add New Task
+        </h5>
+        <h5 class="modal-title mt-0 update-task-title" id="update-task-title" style="display: none">
+          Update Task
+        </h5>
+        <button
+          type="button"
+          id="update-task"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="NewtaskForm">
+            <input type="hidden" value="<%= projectId %>" id="projectId">
+          <div class="mb-3">
+            <label for="taskname" class="form-label">Task Code</label>
+            <input
+              id="taskcode"
+              name="taskcode"
+              type="text"
+              class="form-control validate"
+              placeholder="Enter Task Code..."
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="taskname" class="form-label">Task Name</label>
+            <input
+              id="taskname"
+              name="taskname"
+              type="text"
+              class="form-control validate"
+              placeholder="Enter Project Name..."
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="taskdesc" class="form-label">Task Description</label>
+            <textarea
+              id="taskdesc"
+              class="form-control"
+              name="taskdesc"
+              placeholder="Add Description"
+            ></textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-4" id="taskbudget">
+              <div class="mb-3">
+                <label for="task-duedate" class="form-label">Due Date</label>
+                <input
+                  class="form-control"
+                  type="date"
+                  value="2021-09-20"
+                  id="task-duedate"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label class="form-label">Categories</label>
+                <div>
+                  <select
+                    class="form-control"
+                    name="taskcategory"
+                    id="taskcategory"
+                    required
+                  >
+                    <option value="" selected disabled>Choose...</option>
+                    <option value="DESIGN">DESIGN</option>
+                    <option value="DEVELOPMENT">DEVELOPMENT</option>
+                    <option value="MAINTENANCE">MAINTENANCE</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label class="form-label">Stage</label>
+                <div>
+                  <select
+                    class="form-control"
+                    name="taskstage"
+                    id="taskstage"
+                    required
+                  >
+                    <option value="" selected disabled>Choose...</option>
+                    <option value="BACKLOG">BACKLOG</option>
+                    <option value="WAITING">WAITING</option>
+                    <option value="DOING">DOING</option>
+                    <option value="REVIEW">REVIEW</option>
+                    <option value="DONE">DONE</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+
+          <div class="pt-2">
+            <p class="fw-medium mb-3">Add Team Member</p>
+            <ul
+              class="list-unstyled user-list validate mt-2"
+              id="taskassignee"
+              data-simplebar
+              style="max-height: 160px"
+            >
+              <% allUser.forEach(user => { %>
+              <li>
+                <div class="form-check form-check-primary mb-2 font-size-16 d-flex align-items-center">
+                  <input
+                    class="form-check-input me-3"
+                    type="checkbox"
+                    id="member-<%= user.id %>"
+                    name="member[]"
+                    data-type="image"
+                  />
+                  <img src="https://api.dicebear.com/9.x/identicon/svg?seed=<%= user.name %>" class="rounded-circle avatar-sm" alt=""/>
+                  <label class="form-check-label font-size-14 mb-0 ms-3" for="member-1">
+                    <%= user.name %>
+                  </label>
+                </div>
+              </li>
+              <% }); %>
+            </ul>
+          </div>
+
+          <div class="mt-4" id="attachments-files"></div>
+          <div class="row">
+            <div class="col-lg-10">
+              <button
+                type="submit"
+                class="btn btn-primary addtask"
+                id="addtask"
+              >
+                Create Task
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary updatetaskdetail"
+                id="updatetaskdetail"
+              >
+                Update Task
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="modal fade add-members" tabindex="-1" role="dialog" aria-labelledby="addMemberModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border shadow">
+      
+      <!-- Modal Header -->
+      <div class="modal-header bg-soft-primary">
+        <h5 class="modal-title font-size-16 text-primary" id="addMemberModal">
+          Employee List
+        </h5>
+        <button type="button" class="btn-close" id="save-employee" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- End Modal Header -->
+      
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div id="member-list"></div>
+        <!-- Search Employee -->
+        <div class="search-box mt-2 py-2 px-4">
+          <div class="position-relative">
+            <input type="text" class="form-control rounded" placeholder="Search..."/>
+            <i class="bx bx-search-alt search-icon"></i>
+          </div>
+        </div>
+        <!-- End Search Employee -->
+        <!-- Employee List -->
+        <div data-simplebar style="max-height: 300px">
+          <ul class="list-unstyled p-3 pb-0 mb-0" id="member-lists">
+            <!-- Loop All Employee Except Already Assigned -->
+            <li>
+              <div class="form-check form-check-primary font-size-16 mb-2 d-flex align-items-center">
+                <input
+                  class="form-check-input member-list-checkbox"
+                  type="checkbox"
+                  id="list-member-1"
+                  name="member[]"
+                  data-name="Albert Rodarte"
+                  data-image="/assets/images/users/avatar-1.jpg"
+                  data-type="image"
+                  data-id="member-item-1"
+                />
+                <img src="/assets/images/users/avatar-1.jpg" class="rounded-circle avatar-sm ms-3" alt=""/>
+                <label class="form-check-label font-size-14 ms-3 mb-0" for="member-1">(This is Employee Name)</label>
+              </div>
+            </li>
+            <!-- End Loop Employee List -->
+          </ul>
+        </div>
+      </div>
+      <!-- End Modal Body -->
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-soft-primary" id="saveAllMember">
+          Save
+        </button>
+      </div>
+      <!-- End Modal Footer -->
+       
+    </div>
+  </div>
+</div>

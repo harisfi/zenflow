@@ -1,0 +1,299 @@
+<div class="modal fade bs-task-details" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content border-0">
+      <div class="modal-header border-bottom-0 pb-0 pt-2">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-modal"></button>
+      </div>
+      <div class="modal-body pt-0 py-4">
+        <div class="ps-2 pe-4">
+          <h5 class="modal-title font-size-14 text-primary mb-2">
+            (This is Task Code)
+          </h5>
+          <h5 class="mb-2">(This is Task Title)</h5>
+        </div>
+        <div class="row">
+          <div class="col-xl-8">
+            <div class="ps-2 pe-4" data-simplebar style="max-height: 690px">
+              <p class="text-muted">
+                (This is Task Description)
+              </p>
+              <div class="mt-4">
+                <h5 class="font-size-17">Subtasks</h5>
+                <div class="mt-3" id="general-tasks">
+                  <!-- Loop Subtasks -->
+                  <div class="sub-group-item">
+                    <div class="checklist d-flex bg-light py-1 font-size-16 px-3 rounded form-check align-items-center mb-2">
+                      <div class="flex-grow-1">
+                        <input type="checkbox" class="form-check-input ms-0" id="custom_Design"/>
+                        <label class="form-check-label font-size-15 mb-0 ms-3" for="custom_Design">(This is Subtask Title)</label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Loop Subtasks -->
+                </div>
+
+                <div class="mt-4">
+                  <h5 class="font-size-17 mb-0">Comments</h5>
+                </div>
+                <div class="border rounded mt-3">
+                  <form action="#">
+                    <textarea
+                      rows="3"
+                      class="form-control border-0 resize-none task-comment"
+                      placeholder="Add a Comments..."
+                    ></textarea>
+                    <div class="px-2 bg-light">
+                      <div class="btn-group" role="group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-link shadow-none text-dark"
+                        >
+                          <i class="mdi mdi-link-variant"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-link shadow-none text-dark"
+                        >
+                          <i
+                            class="mdi mdi-emoticon-excited-outline"
+                          ></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-link shadow-none text-dark"
+                        >
+                          <i class="mdi mdi-at"></i>
+                        </button>
+                      </div>
+                      <div class="float-end">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-link shadow-none text-dark"
+                        >
+                          <i class="mdi mdi-send send-task-comment"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- end form -->
+                </div>
+              </div>
+            </div>
+
+            <div class="text-end mt-3">
+              <button
+                type="button"
+                class="btn btn-light shadow-none"
+                data-bs-dismiss="modal"
+                id="cancelMember"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-soft-primary shadow-none"
+                id="createnote"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+          <!-- end col -->
+
+          <div class="col-xl-4">
+            <div class="pe-2 mt-4 mt-xl-0">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h6 class="mb-0">Attributes</h6>
+                  <hr />
+                  <div class="table-responsive">
+                    <table class="table table-borderless table-sm mb-0">
+                      <tbody>
+                        <tr>
+                          <th class="text-muted font-size-14">
+                            Status
+                          </th>
+                          <th class="text-end font-size-13">
+                            <span class="badge badge-soft-primary p-2"
+                              >In Progress</span
+                            >
+                          </th>
+                        </tr>
+                        <tr>
+                          <th class="text-muted font-size-14">
+                            Priority
+                          </th>
+                          <th class="text-end font-size-13">
+                            <span class="badge badge-soft-danger p-2">
+                              <i
+                                class="mdi mdi-alert-circle-outline text-danger me-1"
+                              ></i
+                              >High</span
+                            >
+                          </th>
+                        </tr>
+                        <tr>
+                          <th class="text-muted font-size-14">Label</th>
+                          <th class="text-end font-size-13">None</th>
+                        </tr>
+                        <tr>
+                          <th class="text-muted font-size-14">
+                            Repoter
+                          </th>
+                          <th class="text-end font-size-13">
+                            Ayaan Curry
+                          </th>
+                        </tr>
+                      </tbody>
+                      <!-- end tbody -->
+                    </table>
+                    <!-- end table -->
+                  </div>
+                  <!-- end table responsive -->
+                </div>
+                <!-- end card-body -->
+              </div>
+              <!-- end card -->
+
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h6 class="mb-0">Team Members</h6>
+                  <hr />
+                  <div class="d-flex">
+                    <div id="allmember" class="flex-grow-1"></div>
+                    <div class="align-self-end">
+                      <button
+                        class="btn btn-soft-secondary shadow-none btn-sm"
+                        id="add-members"
+                        data-bs-toggle="modal"
+                        data-bs-target=".add-members"
+                      >
+                        + Add Members
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- end card body -->
+              </div>
+              <!-- end card -->
+
+              <div class="card mb-0 bg-light">
+                <div class="card-body">
+                  <h6 class="mb-0">Files</h6>
+                  <hr />
+                  <div
+                    class="card mb-2 p-2 fade show"
+                    id="file-items-1"
+                  >
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-sm me-3 ms-0 flex-shrink-0">
+                        <div
+                          class="avatar-title bg-light text-muted rounded font-size-20"
+                        >
+                          <i class="mdi mdi-folder-zip"></i>
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <div class="text-start">
+                          <h5 class="font-size-14 mb-1">
+                            document.zip
+                          </h5>
+                          <p class="text-muted font-size-13 mb-0">
+                            5.9 MB
+                          </p>
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="delete-item"
+                        data-id="file-items-1"
+                        ><i
+                          class="mdi mdi-trash-can-outline text-danger font-size-16"
+                        ></i
+                      ></a>
+                    </div>
+                  </div>
+                  <!-- end card -->
+                  <div
+                    class="card mb-2 p-2 fade show"
+                    id="file-items-2"
+                  >
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-sm me-3 ms-0 flex-shrink-0">
+                        <div
+                          class="avatar-title bg-light text-muted rounded font-size-20"
+                        >
+                          <i class="mdi mdi-text-box-check"></i>
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <div class="text-start">
+                          <h5 class="font-size-14 mb-1">
+                            file_update.docx
+                          </h5>
+                          <p class="text-muted font-size-13 mb-0">
+                            2.0 MB
+                          </p>
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="delete-item"
+                        data-id="file-items-2"
+                      >
+                        <i
+                          class="mdi mdi-trash-can-outline text-danger font-size-16"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                  <!-- end card -->
+
+                  <div
+                    class="card mb-0 p-2 fade show"
+                    id="file-items-3"
+                  >
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-sm me-3 ms-0 flex-shrink-0">
+                        <div
+                          class="avatar-title bg-light text-muted rounded font-size-20"
+                        >
+                          <i class="mdi mdi-file-code"></i>
+                        </div>
+                      </div>
+                      <div class="flex-1">
+                        <div class="text-start">
+                          <h5 class="font-size-14 mb-1">
+                            widgets-changes.txt
+                          </h5>
+                          <p class="text-muted font-size-13 mb-0">
+                            2.0 MB
+                          </p>
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="delete-item"
+                        data-id="file-items-3"
+                        ><i
+                          class="mdi mdi-trash-can-outline text-danger font-size-16"
+                        ></i
+                      ></a>
+                    </div>
+                  </div>
+                  <!-- end card -->
+                </div>
+                <!-- end card body -->
+              </div>
+              <!-- end card -->
+            </div>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
