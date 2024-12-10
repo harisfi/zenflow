@@ -15,13 +15,11 @@ class TaskController {
     try {
       const projectId = req.params.projectId;
   
-      // Fetch the project details
       const project = await this.projectModel.findOne({
         where: { id: projectId },
         attributes: ['name'],
       });
   
-      // If project is not found
       if (!project) {
         return res.status(404).json({
           success: false,
@@ -31,30 +29,24 @@ class TaskController {
   
       const projectName = project.name;
   
-      // Predefined list of stages
       const predefinedStages = ["BACKLOG", "WAITING", "DOING", "REVIEW", "DONE"];
   
-      // Fetch all tasks for the project
       let tasks = await this.taskModel.findAll({
         where: { projectId },
         include: this.userModel, 
       });
   
-      // Convert tasks to plain JavaScript objects
       tasks = JSON.parse(JSON.stringify(tasks));
   
-      // Initialize groupedTasks with empty arrays for each stage
       const groupedTasks = predefinedStages.reduce((acc, stage) => {
         acc[stage] = [];
         return acc;
       }, {});
   
-      // Group tasks by their stage
       tasks.forEach(task => {
         if (groupedTasks[task.stage]) {
           groupedTasks[task.stage].push(task);
         } else {
-          // Handle tasks with an undefined or unexpected stage
           if (!groupedTasks['UNASSIGNED']) {
             groupedTasks['UNASSIGNED'] = [];
           }
@@ -62,11 +54,23 @@ class TaskController {
         }
       });
 
+      const connectedUser = await this.projectModel.findOne({
+        where: { id: projectId },
+        include: this.userModel,
+      });
+      
+      let userIds = [];
+  
+      if (connectedUser && connectedUser.Users) {
+        userIds = connectedUser.Users.map((user) => user.id); 
+      };
+
       const allUser = await this.userModel.findAll({
-        attributes: ['id', 'name']
+        where: {
+          id: userIds, 
+        },
       });
   
-      // Render the view with the grouped tasks and project details
       res.render("tasks", {
         currentUser: req.session.user, 
         groupedTasks,                 
@@ -96,11 +100,29 @@ class TaskController {
 
       if (!task) {
         throw new Error("user not found");
-      }
+      };
+
+      const connectedUser = await this.projectModel.findOne({
+        where: { id: task.ProjectId },
+        include: this.userModel,
+      });
+      
+      let userIds = [];
+  
+      if (connectedUser && connectedUser.Users) {
+        userIds = connectedUser.Users.map((user) => user.id); 
+      };
+
+      const allUsers = await this.userModel.findAll({
+        where: {
+          id: userIds, 
+        },
+      });
 
       res.json({
         success: true,
         data: task,
+        allUsers
       });
     } catch (error) {
       res.json({
@@ -181,19 +203,14 @@ class TaskController {
     try {
       const id = req.params.taskId;
 
-      console.log(id);
-  
-      // Step 1: Find the task
       const task = await this.taskModel.findOne({ where: { id } });
       if (!task) {
         throw new Error("Task not found");
       }
   
-      // Step 2: Validate input
       const validator = new Validator(new UpdateTaskValidator());
       const validated = validator.validate(req.body);
   
-      // Step 3: Find the associated project
       const projectId = validated.project_id ?? task.ProjectId;
       const project = await this.projectModel.findOne({
         where: { id: projectId },
@@ -203,8 +220,8 @@ class TaskController {
         throw new Error("Project not found");
       }
   
-      // Step 4: Validate user IDs against project users
       const projectUserIds = project.Users.map((e) => e.id);
+      
       let users = [];
       if (validated.user_ids?.length) {
         users = await this.userModel.findAll({ where: { id: validated.user_ids } });
@@ -220,27 +237,23 @@ class TaskController {
         }
       }
   
-      // Step 5: Merge validated fields with existing task data
       const updatedData = {
+        code: validated.code ?? task.code,
         name: validated.name ?? task.name,
         description: validated.description ?? task.description,
         due_date: validated.due_date ?? task.due_date,
         category: validated.category ?? task.category,
-        progress: validated.progress ?? task.progress,
-        sub_tasks: validated.sub_tasks ?? task.sub_tasks,
         stage: validated.stage ?? task.stage,
-        ProjectId: projectId,
       };
   
-      // Step 6: Update the task
       await task.update(updatedData);
   
-      // Step 7: Update associated users if provided
       if (users.length) {
         await task.setUsers(users);
+      } else {
+        await task.setUsers(null);
       }
   
-      // Step 8: Send a response
       res.json({ success: true, data: task });
     } catch (error) {
       console.error(error); // Log error for debugging

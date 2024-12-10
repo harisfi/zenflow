@@ -107,7 +107,10 @@ async function eTask(taskId) {
     }
 
     const res = await response.json();
-    const data = res.data;
+    const data = res.data; 
+    const listedUsers = res.allUsers;
+    const taskUsers = data.Users;
+    const dueDate = data.due_date ? new Date(data.due_date).toISOString().split('T')[0] : '';
 
     // Inject the modal HTML into the DOM
     const modalHTML = `
@@ -137,7 +140,7 @@ async function eTask(taskId) {
                   <div class="col-md-4" id="taskbudget">
                     <div class="mb-3">
                       <label for="task-duedate" class="form-label">Due Date</label>
-                      <input class="form-control" type="date" id="Etask-duedate" value="${data.due_date}" />
+                      <input class="form-control" type="date" id="Etask-duedate" value="${dueDate}" />
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -168,7 +171,38 @@ async function eTask(taskId) {
                     </div>
                   </div>
                 </div>
-                <div class="mt-4" id="attachments-files"></div>
+                <div class="pt-2">
+                  <p class="fw-medium mb-3">Add Team Member</p>
+                  <ul
+                    class="list-unstyled user-list validate mt-2"
+                    id="Etaskassignee"
+                    data-simplebar
+                    style="max-height: 160px"
+                  >
+                    ${listedUsers
+                      .map(
+                        (u) => `
+                          <li>
+                            <div class="form-check form-check-primary mb-2 font-size-16 d-flex align-items-center">
+                              <input
+                                class="form-check-input me-3"
+                                type="checkbox"
+                                id="${u.id}"
+                                name="member[]"
+                                data-type="image"
+                                ${taskUsers.some((taskUser) => taskUser.id === u.id) ? "checked" : ""}
+                              />
+                              <img src="https://api.dicebear.com/9.x/identicon/svg?seed=${u.name}" class="rounded-circle avatar-sm" alt=""/>
+                              <label class="form-check-label font-size-14 mb-0 ms-3" for="member-${u.id}">
+                                ${u.name}
+                              </label>
+                            </div>
+                          </li>
+                        `
+                      )
+                      .join("")}
+                  </ul>
+                </div>
                 <div class="row">
                   <div class="col-lg-10">
                     <button type="submit" class="btn btn-primary updatetask-btn">Save changes</button>
@@ -212,12 +246,9 @@ async function uTask(taskId) {
 
     // Collect the assignees (who are checked)
     const assignees = [];
-    const assigneeCheckboxes = document.querySelectorAll('#taskassignee input[type="checkbox"]:checked');
+    const assigneeCheckboxes = document.querySelectorAll('#Etaskassignee input[type="checkbox"]:checked');
     assigneeCheckboxes.forEach((checkbox) => {
-      assignees.push({
-        id: checkbox.id.replace('member-', ''),
-        selected: checkbox.checked
-      });
+      assignees.push(checkbox.id); // Add only the ID, not an object
     });
 
     // Prepare data to be sent to the backend
@@ -228,7 +259,7 @@ async function uTask(taskId) {
       due_date: dueDate,
       category: taskCategory,
       stage: taskStage,
-      assignees: assignees,
+      user_ids: assignees,
     };
 
     // Send the PUT request to update the task
